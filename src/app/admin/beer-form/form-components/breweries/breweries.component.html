@@ -1,0 +1,9 @@
+<mat-form-field class="example-full-width" appearance="fill" [formGroup]="brewery">
+    <mat-label>Browar</mat-label>
+    <input type="text" matInput formControlName="breweries" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayBreweryName">
+        <mat-option *ngFor="let brewery of filteredBreweries | async" [value]="brewery">
+            <span>{{ brewery.name }}</span>
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

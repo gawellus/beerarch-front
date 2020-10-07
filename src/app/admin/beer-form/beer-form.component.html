@@ -1,8 +1,45 @@
 <div class="form-container">
-    <form>
-        <mat-form-field appearance="fill">
-            <mat-label>Nazwa</mat-label>
-            <input matInput formControlName="name" required>
-          </mat-form-field>
-    </form>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Nazwa</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field>
+    <br>
+    <form-breweries [brewery]="form"></form-breweries>
+    <br>
+    <form-styles [style]="form"></form-styles>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Alc</mat-label>
+      <input matInput formControlName="alc">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Ekst</mat-label>
+      <input matInput formControlName="ekst">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Ibu</mat-label>
+      <input matInput formControlName="ibu">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Opis</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Uwagi</mat-label>
+      <textarea matInput formControlName="notes"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Ocena</mat-label>
+      <input matInput formControlName="rating">
+    </mat-form-field>
+    <br> -->
+    <form-photo [photo]="form"></form-photo>    
+    <button mat-flat-button color="primary">Zapisz</button>
+  </form>
 </div>

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,7 +10,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
+
+import { MatSelectModule } from '@angular/material/select'; 
+
+
+import {MatCardModule} from '@angular/material/card'; 
+
+import { MatInputModule } from '@angular/material/input'; 
 import { RouterModule } from '@angular/router';
+
+import { BreweryService } from './brewery.service';
+import { StyleService } from './style.service';
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -23,6 +38,15 @@ import { AdminBeersComponent } from './admin/admin-beers/admin-beers.component';
 import { AdminBreweriesComponent } from './admin/admin-breweries/admin-breweries.component';
 import { AdminCountriesComponent } from './admin/admin-countries/admin-countries.component';
 import { AdminStylesComponent } from './admin/admin-styles/admin-styles.component';
+import { LoginComponent } from './login/login.component';
+
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor  } from './helpers/error.interceptor';
+
+import { AuthGuard } from './helpers/auth.guard';
+import { StylesComponent } from './admin/beer-form/form-components/styles/styles.component';
+import { BreweriesComponent } from './admin/beer-form/form-components/breweries/breweries.component';
+import { PhotoComponent } from './admin/beer-form/form-components/photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -34,12 +58,18 @@ import { AdminStylesComponent } from './admin/admin-styles/admin-styles.componen
     AdminBeersComponent,
     AdminBreweriesComponent,
     AdminCountriesComponent,
-    AdminStylesComponent
+    AdminStylesComponent,
+    LoginComponent,
+    StylesComponent,
+    BreweriesComponent,
+    PhotoComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     // AppRoutingModule,
     MatToolbarModule,
     MatSidenavModule,
@@ -47,17 +77,28 @@ import { AdminStylesComponent } from './admin/admin-styles/admin-styles.componen
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatCardModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'beers', component: BeersComponent },
-      { path: 'admin/beers', component: AdminBeersComponent },
-      { path: 'admin/beers/new', component: BeerFormComponent },
+      { path: 'admin/beers', component: AdminBeersComponent, canActivate: [AuthGuard] },
+      { path: 'admin/beers/new', component: BeerFormComponent, canActivate: [AuthGuard] },
       { path: 'admin/breweries', component: AdminBreweriesComponent },
       { path: 'admin/countries', component: AdminCountriesComponent },
       { path: 'admin/styles', component: AdminStylesComponent }
     ])
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    BreweryService,
+    StyleService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

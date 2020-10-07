@@ -1,4 +1,4 @@
-<mat-form-field class="example-full-width" appearance="fill" [formGroup]="brewery">
+<mat-form-field class="full-width" appearance="fill" [formGroup]="brewery">
     <mat-label>Browar</mat-label>
     <input type="text" matInput formControlName="breweries" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayBreweryName">
@@ -6,4 +6,11 @@
             <span>{{ brewery.name }}</span>
         </mat-option>
     </mat-autocomplete>
+    <!-- <mat-error *ngIf="brewery.controls['breweries'].hasError('required')">
+        Please enter a value
+    </mat-error>
+    <mat-error *ngIf="brewery.controls['breweries'].hasError('incorrect')">
+        Please select a valid project
+    </mat-error> -->
+    <mat-error *ngIf="brewery.controls['breweries'].invalid">{{ getErrorMessage() }}</mat-error>
 </mat-form-field>

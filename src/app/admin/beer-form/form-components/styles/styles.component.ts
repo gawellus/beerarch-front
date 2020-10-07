@@ -45,4 +45,10 @@ export class StylesComponent implements OnInit {
     return style && style.name ? style.name : '';
   }
 
+  getErrorMessage() {
+    return this.style.controls['styles'].hasError('required') ? 'You must choose a value' :
+      this.style.controls['styles'].hasError('incorrect') ? 'Not a valid brewery' :
+        '';
+  }
+
 }

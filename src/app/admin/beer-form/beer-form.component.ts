@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { autocompleteValueValidator } from './custom-validators/autocomplete-value.validator';
 
 @Component({
   selector: 'app-beer-form',
@@ -13,16 +14,16 @@ export class BeerFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      // breweries: ['', Validators.required],
+      breweries: ['', [Validators.required, autocompleteValueValidator]],
       // name: ['', Validators.required],
-      // styles: [],
+      styles: ['', [Validators.required, autocompleteValueValidator]],
       // alc: [],
       // ekst: [],
       // ibu: [],
       // description: [],
       // notes: [],
       // rating: [],
-      photo: []
+      // photo: []
     });
   }
 

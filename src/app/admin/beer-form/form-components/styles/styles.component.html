@@ -6,4 +6,5 @@
             <span>{{ style.name }}</span>
         </mat-option>
     </mat-autocomplete>
+    <mat-error *ngIf="style.controls['styles'].invalid">{{ getErrorMessage() }}</mat-error>
 </mat-form-field>

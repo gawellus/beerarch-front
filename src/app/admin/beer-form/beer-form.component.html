@@ -4,11 +4,15 @@
       <mat-label>Nazwa</mat-label>
       <input matInput formControlName="name" required>
     </mat-form-field>
-    <br>
-    <form-breweries [brewery]="form"></form-breweries>
-    <br>
-    <form-styles [style]="form"></form-styles>
-    <br>
+    <br>-->
+    <p>
+      <form-breweries [brewery]="form"></form-breweries>
+    </p>
+    <p>
+      <form-styles [style]="form"></form-styles>
+    </p>
+    
+    <!--<br>
     <mat-form-field appearance="fill">
       <mat-label>Alc</mat-label>
       <input matInput formControlName="alc">
@@ -39,7 +43,7 @@
       <input matInput formControlName="rating">
     </mat-form-field>
     <br> -->
-    <form-photo [photo]="form"></form-photo>    
-    <button mat-flat-button color="primary">Zapisz</button>
+    <!-- <form-photo [photo]="form"></form-photo>     -->
+    <button mat-flat-button color="primary" [disabled]="!form.valid">Zapisz</button>
   </form>
 </div>

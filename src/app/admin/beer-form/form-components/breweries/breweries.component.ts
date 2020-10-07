@@ -45,4 +45,10 @@ export class BreweriesComponent implements OnInit {
     return brewery && brewery.name ? brewery.name : '';
   }
 
+  getErrorMessage() {
+    return this.brewery.controls['breweries'].hasError('required') ? 'You must choose a value' :
+      this.brewery.controls['breweries'].hasError('incorrect') ? 'Not a valid brewery' :
+        '';
+  }
+
 }

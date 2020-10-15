@@ -1,49 +1,60 @@
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Nazwa</mat-label>
-      <input matInput formControlName="name" required>
-    </mat-form-field>
-    <br>-->
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Nazwa</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+    </p>
     <p>
       <form-breweries [brewery]="form"></form-breweries>
     </p>
     <p>
       <form-styles [style]="form"></form-styles>
+    </p>    
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Alc</mat-label>
+        <input matInput formControlName="alc">
+      </mat-form-field>
     </p>
-    
-    <!--<br>
-    <mat-form-field appearance="fill">
-      <mat-label>Alc</mat-label>
-      <input matInput formControlName="alc">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Ekst</mat-label>
-      <input matInput formControlName="ekst">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Ibu</mat-label>
-      <input matInput formControlName="ibu">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Opis</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Uwagi</mat-label>
-      <textarea matInput formControlName="notes"></textarea>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Ocena</mat-label>
-      <input matInput formControlName="rating">
-    </mat-form-field>
-    <br> -->
-    <!-- <form-photo [photo]="form"></form-photo>     -->
-    <button mat-flat-button color="primary" [disabled]="!form.valid">Zapisz</button>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Ekst</mat-label>
+        <input matInput formControlName="ekst">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Ibu</mat-label>
+        <input matInput formControlName="ibu">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Opis</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Uwagi</mat-label>
+        <textarea matInput formControlName="notes"></textarea>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Ocena</mat-label>
+        <input matInput formControlName="rating">
+        <span matSuffix class="max-points">/ 10</span>
+      </mat-form-field>
+      
+    </p>    
+    <p>
+      <form-photo [photo]="form" [photoLink]="photoLink"></form-photo>
+    </p>
+    <p>
+      <button mat-flat-button color="primary" [disabled]="!form.valid">Zapisz</button>
+    </p>    
   </form>
 </div>

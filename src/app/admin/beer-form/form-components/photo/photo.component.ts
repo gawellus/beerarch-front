@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,20 @@ export class PhotoComponent {
   preview: string;
 
   @Input() photo: FormGroup;
+  @Input() photoLink;
+
+  // constructor() {
+  //   console.log(this.photoLink);
+  //   if(this.photoLink) this.preview = this.photoLink;
+  // }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    if (changes['photoLink']) {
+        this.preview = 'http://beer.arch/uploads/images/'+this.photoLink;
+        
+    }
+}
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];

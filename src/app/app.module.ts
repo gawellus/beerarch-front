@@ -13,6 +13,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 
 
+import {MatRadioModule} from '@angular/material/radio'; 
+
 import {MatAutocompleteModule} from '@angular/material/autocomplete'; 
 
 import { MatSelectModule } from '@angular/material/select'; 
@@ -20,11 +22,18 @@ import { MatSelectModule } from '@angular/material/select';
 
 import {MatCardModule} from '@angular/material/card'; 
 
+
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 import { MatInputModule } from '@angular/material/input'; 
 import { RouterModule } from '@angular/router';
 
 import { BreweryService } from './brewery.service';
 import { StyleService } from './style.service';
+
+
+import {MatTableModule} from '@angular/material/table'; 
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -47,6 +56,9 @@ import { AuthGuard } from './helpers/auth.guard';
 import { StylesComponent } from './admin/beer-form/form-components/styles/styles.component';
 import { BreweriesComponent } from './admin/beer-form/form-components/breweries/breweries.component';
 import { PhotoComponent } from './admin/beer-form/form-components/photo/photo.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BeerService } from './beer.service';
+
 
 @NgModule({
   declarations: [
@@ -82,22 +94,29 @@ import { PhotoComponent } from './admin/beer-form/form-components/photo/photo.co
     MatSelectModule,
     MatAutocompleteModule,
     MatCardModule,
+    MatRadioModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'login', component: LoginComponent },
       { path: 'beers', component: BeersComponent },
       { path: 'admin/beers', component: AdminBeersComponent, canActivate: [AuthGuard] },
       { path: 'admin/beers/new', component: BeerFormComponent, canActivate: [AuthGuard] },
+      { path: 'admin/beers/:id', component: BeerFormComponent, canActivate: [AuthGuard] },
       { path: 'admin/breweries', component: AdminBreweriesComponent },
       { path: 'admin/countries', component: AdminCountriesComponent },
       { path: 'admin/styles', component: AdminStylesComponent }
-    ])
+    ]),
+    FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     BreweryService,
-    StyleService
+    StyleService,
+    BeerService
   ],
   bootstrap: [AppComponent]
 })

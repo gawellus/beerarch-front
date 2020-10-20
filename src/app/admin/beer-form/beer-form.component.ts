@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { autocompleteValueValidator } from './custom-validators/autocomplete-value.validator';
 import { Beer } from 'src/app/beer';
 import { BeerService } from 'src/app/beer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { faOm } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-beer-form',
@@ -14,11 +15,13 @@ import { take } from 'rxjs/operators';
 export class BeerFormComponent implements OnInit {
   form: FormGroup;
   photoLink: string;  
+  beerId;
 
   constructor(
     private formBuilder: FormBuilder, 
     private beerService: BeerService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
     ) {}
 
 
@@ -37,9 +40,13 @@ export class BeerFormComponent implements OnInit {
       photo: []
     });
 
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.beerService.getBeerDetails(id).pipe(take(1)).subscribe((res) => {        
+    this.beerId = this.route.snapshot.paramMap.get('id');
+
+console.log(this.beerId);
+
+
+    if (this.beerId) {
+      this.beerService.getBeerDetails(this.beerId).pipe(take(1)).subscribe((res) => {        
         this.form.patchValue({
           name: res.name,
           alc: res.alc,
@@ -69,8 +76,13 @@ export class BeerFormComponent implements OnInit {
       //można dodać walidator na obiekt
 
     if (this.form.valid) {
-      this.beerService.saveBeer(this.toFormData(this.form.value));
+      if(this.beerId) {
+        this.beerService.updateBeer(this.toFormData(this.form.value), this.beerId);
+      } else {
+        this.beerService.saveBeer(this.toFormData(this.form.value));  
+      }      
     }
+    this.router.navigate(['/admin/beers']);
   }
 
   
@@ -86,7 +98,13 @@ export class BeerFormComponent implements OnInit {
     formData.delete('styles');
     formData.delete('breweries');
     formData.delete('photo');
-    formData.append('file', this.form.get('photo').value);
+    const photoFile = this.form.get('photo').value;
+    if (typeof photoFile.name == 'string') {
+      formData.append('file', this.form.get('photo').value);
+    }
+    if(this.beerId) {
+      formData.append('_method', 'PUT');
+    }
     return formData;
   }
 }

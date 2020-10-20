@@ -20,9 +20,10 @@ export class PhotoComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    if (changes['photoLink']) {
-        this.preview = 'http://beer.arch/uploads/images/'+this.photoLink;
-        
+    if (changes['photoLink'] && this.photoLink) {
+        this.preview = 'http://beer.arch/uploads/images/'+this.photoLink;        
+    } else {
+      this.preview = 'http://beer.arch/uploads/images/placeholder.jpg';
     }
 }
 

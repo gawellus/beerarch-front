@@ -18,8 +18,8 @@ export class BeerService {
     return this.httpClient.get<Beer[]>(`${environment.apiUrl}/beers`);
   }
 
-  getBeerDetails(beerId): Observable<Beer> {
-    return this.httpClient.get<Beer>(`${environment.apiUrl}/beers/`+beerId);
+  getBeerDetails(id): Observable<Beer> {
+    return this.httpClient.get<Beer>(`${environment.apiUrl}/beers/`+id);
   }
 
   saveBeer(data) {
@@ -28,4 +28,13 @@ export class BeerService {
       (error) => console.log(error)
     )
   }
+
+  updateBeer(data, id) {
+    this.httpClient.post(`${environment.apiUrl}/beers/`+id, data).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    )
+  }
+
+  
 }

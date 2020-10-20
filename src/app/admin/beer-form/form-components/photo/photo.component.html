@@ -1,10 +1,8 @@
-<mat-card class="example-card" [formGroup]="photo">
+<div class="photo-input-field" [formGroup]="photo">
+    <p>Photo</p>
     <img *ngIf="preview && preview !== null" mat-card-image [src]="preview" [alt]="photo.value.name">
-    <mat-card-actions>
-        <label for="uploadPhoto" class="upload-file">
-            <mat-icon>add_a_photo</mat-icon>
-        </label>
+    <div class="file-input-fill">        
         <button type="button" mat-raised-button (click)="fileInput.click()">Wybierz plik</button>
         <input hidden (change)="uploadFile($event)" #fileInput type="file" id="uploadPhoto">
-    </mat-card-actions>
-</mat-card>
+    </div>
+</div>

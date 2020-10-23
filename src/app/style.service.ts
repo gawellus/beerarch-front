@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Style } from './style';
 import { environment } from '../environments/environment';
 
@@ -15,5 +15,17 @@ export class StyleService {
 
   getStyles(): Observable<Style[]> {
     return this.httpClient.get<Style[]>(`${environment.apiUrl}/styles`);
+  }
+
+  saveStyle(data) {
+    return this.httpClient.post(`${environment.apiUrl}/styles`, data);
+  }
+
+  getStyleDetails(id: number): Observable<Style> {
+    return this.httpClient.get<Style>(`${environment.apiUrl}/styles/`+id);
+  }
+
+  updateStyle(data, id: number) {
+    return this.httpClient.post(`${environment.apiUrl}/styles/`+id, data, {observe: 'response'});
   }
 }

@@ -1,4 +1,4 @@
 export class Style {
-    id: number;
+    id?: number;
     name: string;
 }

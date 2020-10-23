@@ -1,4 +1,4 @@
 export class Brewery {
-    id: number;
+    id?: number;
     name: string;
 }

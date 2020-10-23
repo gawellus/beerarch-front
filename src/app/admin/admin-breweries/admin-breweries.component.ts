@@ -1,4 +1,10 @@
+import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Brewery } from 'src/app/brewery';
+import { BreweryService } from 'src/app/brewery.service';
 
 @Component({
   selector: 'app-admin-breweries',
@@ -7,9 +13,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminBreweriesComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['name', 'country', 'action']; 
+  dataSource: MatTableDataSource<Brewery>; 
 
-  ngOnInit(): void {
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  constructor(private breweryService: BreweryService) {}
+
+  ngOnInit() {
+    this.breweryService.getBreweries().subscribe(breweries => {
+       this.dataSource = new MatTableDataSource(breweries);
+       this.dataSource.sort = this.sort;
+       this.dataSource.paginator = this.paginator;
+    });
   }
 
 }

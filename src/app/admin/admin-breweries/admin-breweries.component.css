@@ -1,0 +1,21 @@
+.table-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-column-name {
+    width: 50%;
+}
+
+.mat-column-country,
+.mat-column-action {
+    width: 25%;
+}
+
+.mat-column-action {
+    text-align: right;
+}

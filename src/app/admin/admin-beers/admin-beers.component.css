@@ -1,9 +1,13 @@
 table {
     width: 100%;
-  }
-  
-  .mat-form-field {
+    text-align: left;
+}
+
+.mat-form-field {
     font-size: 14px;
     width: 100%;
-  }
-  
+}
+
+.mat-column-action {
+    text-align: right;
+}

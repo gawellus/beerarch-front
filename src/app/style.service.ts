@@ -18,7 +18,7 @@ export class StyleService {
   }
 
   saveStyle(data) {
-    return this.httpClient.post(`${environment.apiUrl}/styles`, data);
+    return this.httpClient.post(`${environment.apiUrl}/styles`, data, {observe: 'response'});
   }
 
   getStyleDetails(id: number): Observable<Style> {

@@ -1,33 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { BreweryService } from './brewery.service';
-import { StyleService } from './style.service';
-import { CountryService } from './country.service';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BeerFormComponent } from './admin/beer-form/beer-form.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BeersComponent } from './beers/beers.component';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from '@shared/shared.module';
+
 import { AdminBeersComponent } from './admin/admin-beers/admin-beers.component';
 import { AdminBreweriesComponent } from './admin/admin-breweries/admin-breweries.component';
+import { BreweriesFormComponent } from './admin/admin-breweries/breweries-form/breweries-form.component';
 import { AdminCountriesComponent } from './admin/admin-countries/admin-countries.component';
+import { CountryFormComponent } from './admin/admin-countries/country-form/country-form.component';
 import { AdminStylesComponent } from './admin/admin-styles/admin-styles.component';
-import { LoginComponent } from './login/login.component';
-import { JwtInterceptor } from './helpers/jwt.interceptor';
-import { ErrorInterceptor  } from './helpers/error.interceptor';
-import { AuthGuard } from './helpers/auth.guard';
-import { StylesComponent } from './admin/beer-form/form-components/styles/styles.component';
+import { StyleFormComponent } from './admin/admin-styles/style-form/style-form.component';
+import { BeerFormComponent } from './admin/beer-form/beer-form.component';
 import { BreweriesComponent } from './admin/beer-form/form-components/breweries/breweries.component';
 import { PhotoComponent } from './admin/beer-form/form-components/photo/photo.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StylesComponent } from './admin/beer-form/form-components/styles/styles.component';
+import { AppComponent } from './app.component';
 import { BeerService } from './beer.service';
-import { StyleFormComponent } from './admin/admin-styles/style-form/style-form.component';
+import { BeersComponent } from './beers/beers.component';
+import { BreweryService } from './brewery.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './header/header.component';
+import { AuthGuard } from './helpers/auth.guard';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material.module';
-import { CountryFormComponent } from './admin/admin-countries/country-form/country-form.component';
+import { StyleService } from './style.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { CountryFormComponent } from './admin/admin-countries/country-form/count
     BreweriesComponent,
     PhotoComponent,
     StyleFormComponent,
-    CountryFormComponent    
+    CountryFormComponent,
+    BreweriesFormComponent    
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { CountryFormComponent } from './admin/admin-countries/country-form/count
     ReactiveFormsModule,
     FontAwesomeModule,
     MaterialModule,
-      
+    SharedModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'login', component: LoginComponent },
@@ -79,8 +82,7 @@ import { CountryFormComponent } from './admin/admin-countries/country-form/count
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     BreweryService,
     StyleService,
-    BeerService,
-    CountryService
+    BeerService    
   ],
   bootstrap: [AppComponent]
 })

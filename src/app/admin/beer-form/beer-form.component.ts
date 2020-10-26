@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { autocompleteValueValidator } from './custom-validators/autocomplete-value.validator';
-import { Beer } from 'src/app/beer';
 import { BeerService } from 'src/app/beer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { faOm } from '@fortawesome/free-solid-svg-icons';
+import { autocompleteValueValidator } from '../shared/custom-validators/autocomplete-value.validator';
 
 @Component({
   selector: 'app-beer-form',

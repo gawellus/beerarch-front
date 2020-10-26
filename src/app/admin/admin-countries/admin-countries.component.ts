@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Country } from 'src/app/country';
-import { CountryService } from 'src/app/country.service';
+import { CountryService } from '@shared/services/country.service';
 
 @Component({
   selector: 'app-admin-countries',

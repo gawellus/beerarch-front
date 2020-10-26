@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { CountryService } from 'src/app/country.service';
+import { CountryService } from '@shared/services/country.service';
 
 @Component({
   selector: 'app-country-form',

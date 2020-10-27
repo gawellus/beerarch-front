@@ -23,18 +23,10 @@ export class BeerService {
   }
 
   saveBeer(data) {
-    this.httpClient.post(`${environment.apiUrl}/beers`, data).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    )
+    return this.httpClient.post(`${environment.apiUrl}/beers`, data, {observe: 'response'});
   }
 
   updateBeer(data, id) {
-    this.httpClient.post(`${environment.apiUrl}/beers/`+id, data).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    )
+    return this.httpClient.post(`${environment.apiUrl}/beers/`+id, data, {observe: 'response'});
   }
-
-  
 }

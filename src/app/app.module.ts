@@ -13,6 +13,8 @@ import { BeersComponent } from './beers/beers.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material.module';
+import { MomentDateModule } from '@angular/material-moment-adapter';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,13 +33,16 @@ import { MaterialModule } from './material.module';
     ReactiveFormsModule,
     FontAwesomeModule,
     MaterialModule,
+    MomentDateModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'login', component: LoginComponent },
       { path: 'beers', component: BeersComponent }
     ]),
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

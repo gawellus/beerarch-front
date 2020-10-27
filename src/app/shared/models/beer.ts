@@ -1,6 +1,7 @@
 export class Beer {
     id?: number;
-    name: string;    
+    name: string;
+    consumed_on: any;
     brewery_id: number;
     style_id: number;
     alc?: number;

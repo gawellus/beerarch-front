@@ -8,6 +8,14 @@
                 </mat-form-field>
             </p>
             <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Data konsumpcji</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="consumed_on">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </p>
+            <p>
                 <breweries-select [brewery]="form"></breweries-select>
             </p>
             <p>
@@ -36,7 +44,6 @@
             <photo-upload [photo]="form" [photoLink]="photoLink"></photo-upload>
         </div>
         <div class="col-3">
-
             <p>
                 <mat-form-field appearance="fill">
                     <mat-label>Opis</mat-label>
@@ -60,9 +67,5 @@
                 <button mat-flat-button color="primary" [disabled]="!form.valid">Zapisz</button>
             </p>
         </div>
-
-
-
-
     </form>
 </div>

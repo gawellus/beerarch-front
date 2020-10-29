@@ -46,8 +46,8 @@ export class BreweriesSelectComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.brewery.controls['breweries'].hasError('required') ? 'You must choose a value' :
-      this.brewery.controls['breweries'].hasError('incorrect') ? 'Not a valid brewery' :
+    return this.brewery.controls['breweries'].hasError('required') ? 'Wybierz browar z listy' :
+      this.brewery.controls['breweries'].hasError('incorrect') ? 'Nazwa niepoprawna' :
         '';
   }
 

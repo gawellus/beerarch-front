@@ -1,11 +1,12 @@
 <div class="form-container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="col-1">
-            <p>
+            <p #nameRef>
                 <mat-form-field appearance="fill">
                     <mat-label>Nazwa</mat-label>
                     <input matInput formControlName="name" required>
                 </mat-form-field>
+                <mat-error *ngIf="name.hasError('exist')">Podane piwo już <strong>istnieje</strong></mat-error>
             </p>
             <p>
                 <mat-form-field appearance="fill">

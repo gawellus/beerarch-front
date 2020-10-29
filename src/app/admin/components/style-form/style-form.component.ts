@@ -38,20 +38,27 @@ export class StyleFormComponent implements OnInit {
     }
   }
 
+  get name() {
+    return this.form.get('name');
+  }
+
   onSubmit() {
     if (this.form.valid) {
       if (this.styleId) {
         this.styleService.updateStyle(this.toFormData(this.form.value), this.styleId).subscribe(resp => {
-          if(resp.status == 200) {
+          if (resp.status === 200) {
             this.router.navigate(['/admin/styles']);
           }
-       })        
-      } else {        
+        })
+      } else {
         this.styleService.saveStyle(this.toFormData(this.form.value)).subscribe(resp => {
-          if(resp.status == 201) {
+          if (resp.status === 201) {
             this.router.navigate(['/admin/styles']);
           }
-        });        
+          if (resp.status === 200) {
+            this.form.get('name').setErrors({ exist: true });
+          }
+        });
       }
     }
   }

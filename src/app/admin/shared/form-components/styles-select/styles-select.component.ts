@@ -46,8 +46,8 @@ export class StylesSelectComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.style.controls['styles'].hasError('required') ? 'You must choose a value' :
-      this.style.controls['styles'].hasError('incorrect') ? 'Not a valid brewery' :
+    return this.style.controls['styles'].hasError('required') ? 'Wybierz styl z listy' :
+      this.style.controls['styles'].hasError('incorrect') ? 'Nazwa niepoprawna' :
         '';
   }
 

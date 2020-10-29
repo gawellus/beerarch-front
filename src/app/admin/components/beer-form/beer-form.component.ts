@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -32,6 +32,11 @@ const MY_FORMATS = {
   ],
 })
 export class BeerFormComponent implements OnInit {
+  @ViewChild('nameRef') nameRef: ElementRef;
+  focusName(): void {    
+    this.nameRef.nativeElement.scrollIntoView();
+  }
+
   form: FormGroup;
   photoLink: string;
   beerId;
@@ -82,6 +87,10 @@ export class BeerFormComponent implements OnInit {
     }    
   }
 
+  get name() {
+    return this.form.get('name');
+  }
+
   onSubmit() {
     // na autoselectach pole może zwracać stringa, jeśli wartość została wpisana z łapy
     // można dodać walidator na obiekt
@@ -94,8 +103,12 @@ export class BeerFormComponent implements OnInit {
        })
       } else {
         this.beerService.saveBeer(this.toFormData(this.form.value)).subscribe(resp => {
-          if(resp.status == 201) {
+          if (resp.status === 201) {
             this.router.navigate(['/admin/beers']);
+          }
+          if (resp.status === 200) {
+            this.form.get('name').setErrors({ exist: true });
+            this.focusName();
           }
        })
       }

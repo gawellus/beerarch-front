@@ -42,19 +42,26 @@ export class BreweriesFormComponent implements OnInit {
     }
   }
 
+  get name() {
+    return this.form.get('name');
+  }
+
   onSubmit(): void {
     if (this.form.valid) {
       if (this.breweryId) {
         console.log(this.form.value);
         this.breweryService.updateBrewery(this.toFormData(this.form.value), this.breweryId).subscribe(resp => {
-          if(resp.status === 200) {
+          if (resp.status === 200) {
             this.router.navigate(['/admin/breweries']);
           }
-       })
+        })
       } else {
         this.breweryService.saveBrewery(this.toFormData(this.form.value)).subscribe(resp => {
-          if(resp.status === 201) {
+          if (resp.status === 201) {
             this.router.navigate(['/admin/breweries']);
+          }
+          if (resp.status === 200) {
+            this.form.get('name').setErrors({ exist: true });
           }
         });
       }

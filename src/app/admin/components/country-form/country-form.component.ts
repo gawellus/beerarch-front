@@ -47,16 +47,16 @@ export class CountryFormComponent implements OnInit {
     if (this.form.valid) {
       if (this.countryId) {
         this.countryService.updateCountry(this.toFormData(this.form.value), this.countryId).subscribe(resp => {
-          if(resp.status == 200) {
+          if(resp.status === 200) {
             this.router.navigate(['/admin/countries']);
           }
-       })        
+       })
       } else {
         this.countryService.saveCountry(this.toFormData(this.form.value)).subscribe(resp => {
-          if(resp.status == 201) {
+          if(resp.status === 201) {
             this.router.navigate(['/admin/countries']);
           }
-          if(resp.status == 200) {
+          if(resp.status === 200) {
             this.form.get('name').setErrors({ exist: true});
           }
         });

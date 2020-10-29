@@ -46,8 +46,8 @@ export class CountriesSelectComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.country.controls['countries'].hasError('required') ? 'You must choose a value' :
-      this.country.controls['countries'].hasError('incorrect') ? 'Not a valid brewery' :
+    return this.country.controls['countries'].hasError('required') ? 'Wybierz kraj z listy' :
+      this.country.controls['countries'].hasError('incorrect') ? 'Nazwa niepoprawna' :
         '';
   }
 

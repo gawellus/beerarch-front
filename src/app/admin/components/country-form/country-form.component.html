@@ -4,6 +4,10 @@
             <mat-form-field appearance="fill">
                 <mat-label>Nazwa</mat-label>
                 <input matInput formControlName="name" required>
+                <mat-error *ngIf="name.hasError('required')">
+                    Nazwa jest <strong>wymagana</strong>
+                </mat-error>
+                <mat-error *ngIf="name.hasError('exist')">Podany kraj już <strong>istnieje</strong></mat-error>
             </mat-form-field>
         </p>
 

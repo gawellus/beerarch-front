@@ -22,11 +22,14 @@ export class AdminBreweriesComponent implements OnInit {
   constructor(private breweryService: BreweryService) {}
 
   ngOnInit() {
-    this.breweryService.getBreweries().subscribe(breweries => {
-       this.dataSource = new MatTableDataSource(breweries);
-       this.dataSource.sort = this.sort;
-       this.dataSource.paginator = this.paginator;
-    });
+    this.getCountries();
   }
 
+  getCountries() {
+    this.breweryService.getBreweries().subscribe(breweries => {
+      this.dataSource = new MatTableDataSource(breweries);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+   });
+  }
 }

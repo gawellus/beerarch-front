@@ -1,10 +1,10 @@
-<mat-form-field class="example-full-width" appearance="fill" [formGroup]="style">
-    <mat-label>Styl</mat-label>
-    <input type="text" matInput formControlName="styles" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayStyleName">
-        <mat-option *ngFor="let style of filteredStyles | async" [value]="style">
-            <span>{{ style.name }}</span>
+<mat-form-field class="example-full-width" appearance="fill" [formGroup]="country">
+    <mat-label>Kraj</mat-label>
+    <input type="text" matInput formControlName="countries" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountryName">
+        <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
+            <span>{{ country.name }}</span>
         </mat-option>
     </mat-autocomplete>
-    <mat-error *ngIf="style.controls['styles'].invalid">{{ getErrorMessage() }}</mat-error>
+    <mat-error *ngIf="country.controls['countries'].invalid">{{ getErrorMessage() }}</mat-error>
 </mat-form-field>

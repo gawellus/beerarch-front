@@ -17,4 +17,16 @@ export class BreweryService {
   getBreweries(): Observable<Brewery[]> {
     return this.httpClient.get<Brewery[]>(`${environment.apiUrl}/breweries`);
   }
+
+  saveBrewery(data) {
+    return this.httpClient.post(`${environment.apiUrl}/breweries`, data, {observe: 'response'});
+  }
+
+  getBreweryDetails(id: number): Observable<Brewery> {
+    return this.httpClient.get<Brewery>(`${environment.apiUrl}/breweries/`+id);
+  }
+
+  updateBrewery(data, id: number) {
+    return this.httpClient.post(`${environment.apiUrl}/breweries/`+id, data, {observe: 'response'});
+  }
 }

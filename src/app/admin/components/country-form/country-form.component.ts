@@ -39,6 +39,10 @@ export class CountryFormComponent implements OnInit {
     }
   }
 
+  get name() {
+    return this.form.get('name');
+  }
+
   onSubmit() {
     if (this.form.valid) {
       if (this.countryId) {
@@ -51,6 +55,9 @@ export class CountryFormComponent implements OnInit {
         this.countryService.saveCountry(this.toFormData(this.form.value)).subscribe(resp => {
           if(resp.status == 201) {
             this.router.navigate(['/admin/countries']);
+          }
+          if(resp.status == 200) {
+            this.form.get('name').setErrors({ exist: true});
           }
         });
       }

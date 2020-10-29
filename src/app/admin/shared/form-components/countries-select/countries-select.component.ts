@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Style } from '@shared/models/style';
-import { StyleService } from '@shared/services/style.service';
+import { Country } from '@shared/models/country';
+import { CountryService } from '@shared/services/country.service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs/operators';
 
@@ -12,16 +12,16 @@ import { debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'r
 })
 export class CountriesSelectComponent implements OnInit {
 
-  @Input() style: FormGroup;
+  @Input() country: FormGroup;
 
-  filteredStyles: Observable<any[]>;
+  filteredCountries: Observable<any[]>;
   importedData: Observable<any[]>;
 
-  constructor(private styleService: StyleService) { }
+  constructor(private countryService: CountryService) { }
 
   ngOnInit() {    
-    this.importedData = this.styleService.getStyles();
-    this.filteredStyles = this.style.controls['styles'].valueChanges
+    this.importedData = this.countryService.getList();
+    this.filteredCountries = this.country.controls['countries'].valueChanges
       .pipe(
         startWith(''),
         debounceTime(400),
@@ -32,7 +32,7 @@ export class CountriesSelectComponent implements OnInit {
       );
   }
 
-  filter(val: string): Observable<Style[]> {
+  filter(val: string): Observable<Country[]> {
     return this.importedData
       .pipe(
         map(response => response.filter(option => {
@@ -41,13 +41,13 @@ export class CountriesSelectComponent implements OnInit {
       )
   }
 
-  displayStyleName(style: Style): string {
-    return style && style.name ? style.name : '';
+  displayCountryName(country: Country): string {
+    return country && country.name ? country.name : '';
   }
 
   getErrorMessage() {
-    return this.style.controls['styles'].hasError('required') ? 'You must choose a value' :
-      this.style.controls['styles'].hasError('incorrect') ? 'Not a valid brewery' :
+    return this.country.controls['countries'].hasError('required') ? 'You must choose a value' :
+      this.country.controls['countries'].hasError('incorrect') ? 'Not a valid brewery' :
         '';
   }
 

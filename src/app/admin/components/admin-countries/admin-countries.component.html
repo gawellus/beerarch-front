@@ -12,12 +12,12 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
-        <ng-container matColumnDef="disclaimer">
-            <td mat-footer-cell *matFooterCellDef colspan="2">
-                <a mat-flat-button color="primary" routerLink='/admin/countries/new'>Dodaj</a>
-            </td>
-        </ng-container>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <div class="sub-table-panel clearfix">
+        <p class="spaced d-flex justify-content-between">
+            <button mat-stroked-button backButton type="button" class="backbutton">Wstecz</button>
+            <a mat-flat-button color="primary" routerLink='/admin/countries/new'>Dodaj</a>
+        </p>
+    </div>
 </div>

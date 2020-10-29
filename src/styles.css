@@ -25,3 +25,25 @@ mat-form-field {
     max-width: 1200px;
     margin: 0 auto;
 }
+
+.d-flex {
+    display: flex !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.spaced {
+    padding: 1em;
+}
+
+.sub-table-panel {
+    margin-top: 1em;
+}
+
+.clearfix::after {
+    display: block;
+    clear: both;
+    content: ""
+}

@@ -17,6 +17,7 @@ import { BreweriesSelectComponent } from './shared/form-components/breweries-sel
 import { PhotoUploadComponent } from './shared/form-components/photo-upload/photo-upload.component';
 import { StylesSelectComponent } from './shared/form-components/styles-select/styles-select.component';
 import { CountriesSelectComponent } from './shared/form-components/countries-select/countries-select.component'
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { CountriesSelectComponent } from './shared/form-components/countries-sel
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   declarations: [
     AdminBeersComponent,

@@ -2,7 +2,7 @@
 
     <table mat-table matSort [dataSource]="dataSource">
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa </th>
             <td mat-cell *matCellDef="let beers"> {{beers.name}} </td>
         </ng-container>
 
@@ -12,40 +12,39 @@
         </ng-container>
 
         <ng-container matColumnDef="rating">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Rating </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ocena </th>
             <td mat-cell *matCellDef="let beers"> {{ beers.rating | number : '1.1-1' }} / 10 </td>
         </ng-container>
 
         <ng-container matColumnDef="brewery">
-            <th mat-header-cell *matHeaderCellDef> Brewery </th>
+            <th mat-header-cell *matHeaderCellDef> Browary </th>
             <td mat-cell *matCellDef="let beers"> {{beers.brewery.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="style">
-            <th mat-header-cell *matHeaderCellDef> Style </th>
+            <th mat-header-cell *matHeaderCellDef> Styl </th>
             <td mat-cell *matCellDef="let beers"> {{beers.style.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="country">
-            <th mat-header-cell *matHeaderCellDef> Country </th>
+            <th mat-header-cell *matHeaderCellDef> Kraj </th>
             <td mat-cell *matCellDef="let beers"> {{beers.brewery.country.name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let beers"> <a mat-stroked-button [routerLink]="['/admin/beers/', beers.id]">Edit</a> </td>
+            <td mat-cell *matCellDef="let beers"> <a mat-stroked-button [routerLink]="['/admin/beers/', beers.id]">Edycja</a> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
 
-        <ng-container matColumnDef="disclaimer">
-            <td mat-footer-cell *matFooterCellDef colspan="2">
-                <a mat-flat-button color="primary" routerLink='/admin/beers/new'>Add a Beer</a>
-            </td>
-        </ng-container>
     </table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
+    <div class="sub-table-panel clearfix">
+        <p class="spaced d-flex justify-content-between">
+            <button mat-stroked-button backButton type="button" class="backbutton">Wstecz</button>
+            <a mat-flat-button color="primary" routerLink='/admin/beers/new'>Dodaj</a>
+        </p>
+    </div>
 </div>

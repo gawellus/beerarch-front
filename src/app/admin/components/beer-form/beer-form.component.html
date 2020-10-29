@@ -63,8 +63,9 @@
                     <span matSuffix class="max-points">/ 10</span>
                 </mat-form-field>
             </p>
-            <p>
-                <button mat-flat-button color="primary" [disabled]="!form.valid">Zapisz</button>
+            <p class="d-flex justify-content-between">
+                <button mat-stroked-button backButton type="button" class="backbutton">Wstecz</button>
+                <button mat-flat-button color="primary" type="submit" [disabled]="!form.valid">Zapisz</button>
             </p>
         </div>
     </form>

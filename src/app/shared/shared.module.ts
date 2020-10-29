@@ -11,6 +11,7 @@ import { BeerService } from './services/beer.service';
 import { BreweryService } from './services/brewery.service';
 import { CountryService } from './services/country.service';
 import { StyleService } from './services/style.service';
+import { BackButtonDirective } from './back-button.directive';
 
 @NgModule({
   imports: [
@@ -19,10 +20,12 @@ import { StyleService } from './services/style.service';
     MaterialModule,
   ],
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    BackButtonDirective
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    BackButtonDirective
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

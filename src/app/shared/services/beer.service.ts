@@ -14,8 +14,8 @@ export class BeerService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBeerList(): Observable<Beer[]> {
-    return this.httpClient.get<Beer[]>(`${environment.apiUrl}/beers`);
+  getBeerList(param?): Observable<Beer[]> {
+    return this.httpClient.get<Beer[]>(`${environment.apiUrl}/beers`, {params: param});
   }
 
   getBeerDetails(id): Observable<Beer> {

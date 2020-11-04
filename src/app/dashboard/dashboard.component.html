@@ -1,1 +1,80 @@
-<p>dashboard works!</p>
+<section class="last-drinked">
+    <h1>Ostatnia konsupcja</h1>
+    <div class="grid-container">
+        <div class="col-1">
+            <div style="background-color: grey; width: 100%; height: 400px;">
+
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="main-title">
+                <div>
+                    <h3>Tyskie</h3>
+                </div>
+            </div>
+            <div class="rating">
+                <p>5/10</p>
+            </div>
+            <div class="section">
+                <div class="title">
+                    <h3>Styl</h3>
+                </div>
+                <div class="description">
+                    <p>Lager</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="title">
+                    <h3>Browar</h3>
+                </div>
+                <div class="description">
+                    <p>Pinta</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="title">
+                    <h3>Kraj</h3>
+                </div>
+                <div class="description">
+                    <p>RPA</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="title">
+                    <h3>Data konsumpcji</h3>
+                </div>
+                <div class="description">
+                    <p>10.10.2020</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="title">
+                    <h3>Szczegóły</h3>
+                </div>
+                <div class="description">
+                    <a href="/">Szczegóły >></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="top-lists">
+    <h1>Rankingi</h1>
+    <mat-tab-group (selectedTabChange)="tabClick($event)" class="mat-elevation-z2">
+        <mat-tab label=" Top10 ">
+            <ng-template matTabContent>
+                <app-top-list *ngIf="dataSource" [data]="dataSource"></app-top-list>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Najnowsze ">
+            <ng-template matTabContent>
+                <app-top-list *ngIf="dataSource" [data]="dataSource"></app-top-list>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Najpopularniejsze browary ">
+            <ng-template matTabContent>
+                <app-top-list *ngIf="dataSource" [data]="dataSource"></app-top-list>
+            </ng-template>
+        </mat-tab>
+    </mat-tab-group>
+</section>

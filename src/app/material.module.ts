@@ -18,6 +18,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {MatTabsModule} from '@angular/material/tabs'; 
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
         MatGridListModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatMomentDateModule
+        MatMomentDateModule,
+        MatTabsModule
     ],
     exports: [
         MatToolbarModule,
@@ -61,7 +63,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
         MatGridListModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatMomentDateModule
+        MatMomentDateModule,
+        MatTabsModule
     ]
 })
 export class MaterialModule { }

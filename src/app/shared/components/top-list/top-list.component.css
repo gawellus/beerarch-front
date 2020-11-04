@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+}
+
+.width10p {
+    width: 10%;
+}
+
+.width15p {
+    width: 15%;
+}
+
+.width20p {
+    width: 20%;
+}
+
+.justify-end {
+    text-align: right;
+}

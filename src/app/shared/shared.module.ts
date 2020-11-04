@@ -12,6 +12,7 @@ import { BreweryService } from './services/brewery.service';
 import { CountryService } from './services/country.service';
 import { StyleService } from './services/style.service';
 import { BackButtonDirective } from './back-button.directive';
+import { TopListComponent } from './components/top-list/top-list.component';
 
 @NgModule({
   imports: [
@@ -21,11 +22,13 @@ import { BackButtonDirective } from './back-button.directive';
   ],
   declarations: [
     HeaderComponent,
-    BackButtonDirective
+    BackButtonDirective,
+    TopListComponent
   ],
   exports: [
     HeaderComponent,
-    BackButtonDirective
+    BackButtonDirective,
+    TopListComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

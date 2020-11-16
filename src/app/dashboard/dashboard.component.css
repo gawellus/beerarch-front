@@ -33,3 +33,7 @@ h3 {
 section {
     margin-bottom: 3em;
 }
+
+.top-lists {
+    min-height: 640px;
+}

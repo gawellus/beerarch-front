@@ -29,4 +29,8 @@ export class BreweryService {
   updateBrewery(data, id: number) {
     return this.httpClient.post(`${environment.apiUrl}/breweries/`+id, data, {observe: 'response'});
   }
+
+  getMostPopularBreweries(): Observable<Brewery[]> {
+    return this.httpClient.get<Brewery[]>(`${environment.apiUrl}/breweries/popular`);
+  }
 }

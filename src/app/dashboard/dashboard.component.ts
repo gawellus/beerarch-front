@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { BeerService } from '@shared/services/beer.service';
+import { BreweryService } from '@shared/services/brewery.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,62 +11,30 @@ import { BeerService } from '@shared/services/beer.service';
 export class DashboardComponent implements OnInit {
 
   public list: string;
-  public dataSource = null;
+  public dataSourceTab0 = null;
+  public dataSourceTab1 = null;
+  public dataSourceTab2 = null;
   public initialParams = {
-    'sort': 'rating',
-    'order': 'DESC',
-    'limit': 10
+    sort: 'rating',
+    order: 'DESC',
+    limit: 10
   };
 
-  constructor(private beerService: BeerService) {
-    
-   }
+  constructor(private beerService: BeerService, private breweryService: BreweryService) {
+
+  }
 
   ngOnInit(): void {
-    this.getBeers(this.initialParams);
+    this.beerService.getBeerList(this.initialParams).subscribe(beers => {
+      this.dataSourceTab0 = new MatTableDataSource(beers);
+    });
+
+    this.beerService.getBeerList({ limit: 10 }).subscribe(beers => {
+      this.dataSourceTab1 = new MatTableDataSource(beers);
+    });
+
+    this.breweryService.getMostPopularBreweries().subscribe(breweries => {
+      this.dataSourceTab2 = new MatTableDataSource(breweries);
+    });
   }
-
-  tabClick(tab) {
-    let index = tab.index;
-    switch (index) {
-      case 1:
-        console.log(index);        
-        console.log('all');        
-          this.getBeers();
-          break;
-      case 2:
-        this.dataSource = null;
-        console.log(index);
-        console.log('null');                  
-          break;
-      case 0:
-      default:        
-      console.log(index);
-      console.log(this.initialParams.limit);        
-        this.getBeers(this.initialParams);
-        break;
-  }
-
-
-
-    // if(index === 1) {
-    //   const params = {
-    //     'sort': 'rating',
-    //     'order': 'DESC',
-    //     'limit': 10
-    //   };
-    //   this.getBeers(params);
-    // }
-    // else {
-    //   this.getBeers();
-    // }
-  }
-
-  async getBeers(params?) {
-    this.dataSource = null;
-    this.beerService.getBeerList(params).subscribe(beers => {
-      this.dataSource = new MatTableDataSource(beers);
-   });
-  }
-
 }

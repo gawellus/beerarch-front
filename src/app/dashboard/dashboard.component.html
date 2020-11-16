@@ -60,20 +60,20 @@
 </section>
 <section class="top-lists">
     <h1>Rankingi</h1>
-    <mat-tab-group (selectedTabChange)="tabClick($event)" class="mat-elevation-z2">
+    <mat-tab-group class="mat-elevation-z2">
         <mat-tab label=" Top10 ">
             <ng-template matTabContent>
-                <app-top-list *ngIf="dataSource" [data]="dataSource"></app-top-list>
+                <app-top-list *ngIf="dataSourceTab0" [data]="dataSourceTab0"></app-top-list>
             </ng-template>
         </mat-tab>
         <mat-tab label="Najnowsze ">
             <ng-template matTabContent>
-                <app-top-list *ngIf="dataSource" [data]="dataSource"></app-top-list>
+                <app-top-list *ngIf="dataSourceTab1" [data]="dataSourceTab1"></app-top-list>
             </ng-template>
         </mat-tab>
         <mat-tab label="Najpopularniejsze browary ">
             <ng-template matTabContent>
-                <app-top-list *ngIf="dataSource" [data]="dataSource"></app-top-list>
+                <app-popular-list *ngIf="dataSourceTab2" [data]="dataSourceTab2"></app-popular-list>
             </ng-template>
         </mat-tab>
     </mat-tab-group>

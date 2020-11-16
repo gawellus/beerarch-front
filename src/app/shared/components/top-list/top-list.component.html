@@ -29,7 +29,9 @@
 
     <ng-container matColumnDef="rank">
         <th mat-header-cell *matHeaderCellDef class="width10p"> Ocena </th>
-        <td mat-cell *matCellDef="let element"> {{element.rating | number : '1.1-1'}}/10 </td>
+        <td mat-cell *matCellDef="let element">
+            <span style="font-weight: bold; color:{{element.rating | rankcolor}};font-size: 1.5em;">{{element.rating | number : '1.1-1' }}</span>
+        </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

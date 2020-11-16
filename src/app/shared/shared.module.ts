@@ -13,22 +13,29 @@ import { CountryService } from './services/country.service';
 import { StyleService } from './services/style.service';
 import { BackButtonDirective } from './back-button.directive';
 import { TopListComponent } from './components/top-list/top-list.component';
+import { RankColorPipe } from './rank-color.pipe';
+import { PopularListComponent } from './components/popular-list/popular-list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([]),
     MaterialModule,
+    // RankColorPipe
   ],
   declarations: [
     HeaderComponent,
     BackButtonDirective,
-    TopListComponent
+    TopListComponent,
+    RankColorPipe,
+    PopularListComponent
   ],
   exports: [
     HeaderComponent,
     BackButtonDirective,
-    TopListComponent
+    TopListComponent,
+    RankColorPipe,
+    PopularListComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,26 +1,24 @@
 <section class="last-drinked">
     <h1>Ostatnia konsupcja</h1>
-    <div class="grid-container">
-        <div class="col-1">
-            <div style="background-color: grey; width: 100%; height: 400px;">
-
-            </div>
+    <div *ngIf="latestBeer" class="grid-container">
+        <div class="col-1 beer-pic">
+            <img *ngIf="latestBeer.photo" mat-card-image [src]="photoUrl">
         </div>
         <div class="col-2">
             <div class="main-title">
                 <div>
-                    <h3>Tyskie</h3>
+                    <h3>{{ latestBeer.name }}</h3>
                 </div>
             </div>
             <div class="rating">
-                <p>5/10</p>
+                <p style="font-weight: bold; color:{{latestBeer.rating | rankcolor}};font-size: 1.5em;">{{latestBeer.rating | number : '1.1-1' }}</p>
             </div>
             <div class="section">
                 <div class="title">
                     <h3>Styl</h3>
                 </div>
                 <div class="description">
-                    <p>Lager</p>
+                    <p>{{ latestBeer.style.name }}</p>
                 </div>
             </div>
             <div class="section">
@@ -28,7 +26,7 @@
                     <h3>Browar</h3>
                 </div>
                 <div class="description">
-                    <p>Pinta</p>
+                    <p>{{ latestBeer.brewery.name }}</p>
                 </div>
             </div>
             <div class="section">
@@ -36,7 +34,7 @@
                     <h3>Kraj</h3>
                 </div>
                 <div class="description">
-                    <p>RPA</p>
+                    <p>{{ latestBeer.brewery.country.name }}</p>
                 </div>
             </div>
             <div class="section">
@@ -44,7 +42,7 @@
                     <h3>Data konsumpcji</h3>
                 </div>
                 <div class="description">
-                    <p>10.10.2020</p>
+                    <p>{{latestBeer.consumed_on | date:"yyyy-MM-dd"}}</p>
                 </div>
             </div>
             <div class="section">
@@ -52,10 +50,14 @@
                     <h3>Szczegóły</h3>
                 </div>
                 <div class="description">
-                    <a href="/">Szczegóły >></a>
+                    <a mat-stroked-button [routerLink]="['beers/', latestBeer.id]">Szczegóły</a>
                 </div>
             </div>
         </div>
+    </div>
+    <div *ngIf="isTopLoading" class="loading-spinner">
+        <mat-progress-spinner color="primary" mode="indeterminate">
+        </mat-progress-spinner>
     </div>
 </section>
 <section class="top-lists">
@@ -77,4 +79,8 @@
             </ng-template>
         </mat-tab>
     </mat-tab-group>
+    <div *ngIf="isLoading" class="loading-spinner">
+        <mat-progress-spinner color="primary" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
 </section>

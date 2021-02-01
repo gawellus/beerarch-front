@@ -12,8 +12,8 @@ import { BeerService } from '@shared/services/beer.service';
 })
 export class AdminBeersComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'alc', 'rating', 'brewery', 'style', 'country', 'action']; 
-  dataSource: MatTableDataSource<Beer>; 
+  displayedColumns: string[] = ['name', 'alc', 'rating', 'brewery', 'style', 'country', 'consumed_on', 'action'];
+  dataSource: MatTableDataSource<Beer>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -21,11 +21,16 @@ export class AdminBeersComponent implements OnInit {
   constructor(private beerService: BeerService) {}
 
   ngOnInit() {
-    this.beerService.getBeerList().subscribe(beers => {
+    this.beerService.getBeerList({sort: 'consumed_on', order: 'DESC'}).subscribe(beers => {
        this.dataSource = new MatTableDataSource(beers);
        this.dataSource.sort = this.sort;
        this.dataSource.paginator = this.paginator;
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

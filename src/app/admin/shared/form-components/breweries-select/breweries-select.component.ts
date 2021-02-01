@@ -21,13 +21,13 @@ export class BreweriesSelectComponent implements OnInit {
 
   ngOnInit() {
     this.importedData = this.breweryService.getBreweries();
-    this.filteredBreweries = this.brewery.controls['breweries'].valueChanges
+    this.filteredBreweries = this.brewery.controls.breweries.valueChanges
       .pipe(
         startWith(''),
         debounceTime(400),
         distinctUntilChanged(),
         switchMap(val => {
-          return this.filter(val.name || val)
+          return this.filter(val.name || val);
         })
       );
   }
@@ -36,9 +36,9 @@ export class BreweriesSelectComponent implements OnInit {
     return this.importedData
       .pipe(
         map(response => response.filter(option => {
-          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0
+          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0;
         }))
-      )
+      );
   }
 
   displayBreweryName(brewery: Brewery): string {
@@ -46,8 +46,8 @@ export class BreweriesSelectComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.brewery.controls['breweries'].hasError('required') ? 'Wybierz browar z listy' :
-      this.brewery.controls['breweries'].hasError('incorrect') ? 'Nazwa niepoprawna' :
+    return this.brewery.controls.breweries.hasError('required') ? 'Wybierz browar z listy' :
+      this.brewery.controls.breweries.hasError('incorrect') ? 'Nazwa niepoprawna' :
         '';
   }
 

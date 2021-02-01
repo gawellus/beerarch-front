@@ -9,8 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class CountryService {
 
-  PHP_API_SERVER = "beer.arch/api";
-
   constructor(private httpClient: HttpClient) { }
 
   getList(): Observable<Country[]> {
@@ -22,14 +20,14 @@ export class CountryService {
   }
 
   getCountryDetails(id: number): Observable<Country> {
-    return this.httpClient.get<Country>(`${environment.apiUrl}/countries/`+id);
+    return this.httpClient.get<Country>(`${environment.apiUrl}/countries/` + id);
   }
 
   updateCountry(data, id: number) {
-    return this.httpClient.post(`${environment.apiUrl}/countries/`+id, data, {observe: 'response'});
+    return this.httpClient.post(`${environment.apiUrl}/countries/` + id, data, {observe: 'response'});
   }
 
   deleteCountry(id: number) {
-    return this.httpClient.delete<Country>(`${environment.apiUrl}/countries/`+id, {observe: 'response'});
+    return this.httpClient.delete<Country>(`${environment.apiUrl}/countries/` + id, {observe: 'response'});
   }
 }

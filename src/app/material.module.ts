@@ -18,7 +18,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import {MatTabsModule} from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -42,7 +43,12 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatDatepickerModule,
         MatNativeDateModule,
         MatMomentDateModule,
-        MatTabsModule
+        MatTabsModule,
+        MatProgressSpinnerModule
+    ],
+    providers: [
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
     exports: [
         MatToolbarModule,
@@ -64,7 +70,8 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatDatepickerModule,
         MatNativeDateModule,
         MatMomentDateModule,
-        MatTabsModule
+        MatTabsModule,
+        MatProgressSpinnerModule
     ]
 })
 export class MaterialModule { }

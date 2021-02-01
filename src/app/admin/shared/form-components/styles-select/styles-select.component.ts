@@ -19,15 +19,15 @@ export class StylesSelectComponent implements OnInit {
 
   constructor(private styleService: StyleService) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.importedData = this.styleService.getStyles();
-    this.filteredStyles = this.style.controls['styles'].valueChanges
+    this.filteredStyles = this.style.controls.styles.valueChanges
       .pipe(
         startWith(''),
         debounceTime(400),
         distinctUntilChanged(),
         switchMap(val => {
-          return this.filter(val.name || val)
+          return this.filter(val.name || val);
         })
       );
   }
@@ -36,9 +36,9 @@ export class StylesSelectComponent implements OnInit {
     return this.importedData
       .pipe(
         map(response => response.filter(option => {
-          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0
+          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0;
         }))
-      )
+      );
   }
 
   displayStyleName(style: Style): string {
@@ -46,8 +46,8 @@ export class StylesSelectComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.style.controls['styles'].hasError('required') ? 'Wybierz styl z listy' :
-      this.style.controls['styles'].hasError('incorrect') ? 'Nazwa niepoprawna' :
+    return this.style.controls.styles.hasError('required') ? 'Wybierz styl z listy' :
+      this.style.controls.styles.hasError('incorrect') ? 'Nazwa niepoprawna' :
         '';
   }
 

@@ -54,7 +54,7 @@ export class BreweriesFormComponent implements OnInit {
           if (resp.status === 200) {
             this.router.navigate(['/admin/breweries']);
           }
-        })
+        });
       } else {
         this.breweryService.saveBrewery(this.toFormData(this.form.value)).subscribe(resp => {
           if (resp.status === 201) {

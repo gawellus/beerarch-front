@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
 
 export class BreweryService {
 
-  PHP_API_SERVER = "beer.arch/api";
-
   constructor(private httpClient: HttpClient) { }
 
   getBreweries(): Observable<Brewery[]> {
@@ -23,11 +21,11 @@ export class BreweryService {
   }
 
   getBreweryDetails(id: number): Observable<Brewery> {
-    return this.httpClient.get<Brewery>(`${environment.apiUrl}/breweries/`+id);
+    return this.httpClient.get<Brewery>(`${environment.apiUrl}/breweries/` + id);
   }
 
   updateBrewery(data, id: number) {
-    return this.httpClient.post(`${environment.apiUrl}/breweries/`+id, data, {observe: 'response'});
+    return this.httpClient.post(`${environment.apiUrl}/breweries/` + id, data, {observe: 'response'});
   }
 
   getMostPopularBreweries(): Observable<Brewery[]> {

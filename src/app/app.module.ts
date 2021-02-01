@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { MaterialModule } from './material.module';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 import { DatePipe } from '@angular/common';
+import { AuthGuard } from 'src/app/shared/helpers/auth.guard';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { DatePipe } from '@angular/common';
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'beers', component: BeersComponent }
+      { path: 'beers/:id', component: BeersComponent, canActivate: [AuthGuard] }
     ]),
   ],
   providers: [

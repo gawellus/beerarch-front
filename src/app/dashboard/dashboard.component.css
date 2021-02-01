@@ -37,3 +37,18 @@ section {
 .top-lists {
     min-height: 640px;
 }
+
+.beer-pic {
+    text-align: center;
+}
+
+.beer-pic img {
+    max-width: 50%;
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5em;
+}

@@ -14,8 +14,8 @@ import { StyleService } from '@shared/services/style.service';
 })
 export class AdminStylesComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'action']; 
-  dataSource: MatTableDataSource<Style>; 
+  displayedColumns: string[] = ['name', 'action'];
+  dataSource: MatTableDataSource<Style>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

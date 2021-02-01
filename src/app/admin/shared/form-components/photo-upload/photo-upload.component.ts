@@ -1,5 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'photo-upload',
@@ -20,10 +21,10 @@ export class PhotoUploadComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
-    if (changes['photoLink'] && this.photoLink) {
-        this.preview = 'http://beer.arch/uploads/images/'+this.photoLink;        
+    if (changes.photoLink && this.photoLink) {
+        this.preview = environment.imagesUrl + this.photoLink;
     } else {
-      this.preview = 'http://beer.arch/uploads/images/placeholder.jpg';
+      this.preview = environment.imagesUrl + 'placeholder.jpg';
     }
 }
 
@@ -32,12 +33,12 @@ export class PhotoUploadComponent {
     this.photo.patchValue({
       photo: file
     });
-    this.photo.get('photo').updateValueAndValidity()
+    this.photo.get('photo').updateValueAndValidity();
 
     const reader = new FileReader();
     reader.onload = () => {
       this.preview = reader.result as string;
-    }
-    reader.readAsDataURL(file)
+    };
+    reader.readAsDataURL(file);
   }
 }

@@ -13,8 +13,8 @@ import { BreweryService } from '@shared/services/brewery.service';
 })
 export class AdminBreweriesComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'country', 'action']; 
-  dataSource: MatTableDataSource<Brewery>; 
+  displayedColumns: string[] = ['name', 'country', 'action'];
+  dataSource: MatTableDataSource<Brewery>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

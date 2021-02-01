@@ -16,7 +16,7 @@ import { StyleFormComponent } from './components/style-form/style-form.component
 import { BreweriesSelectComponent } from './shared/form-components/breweries-select/breweries-select.component';
 import { PhotoUploadComponent } from './shared/form-components/photo-upload/photo-upload.component';
 import { StylesSelectComponent } from './shared/form-components/styles-select/styles-select.component';
-import { CountriesSelectComponent } from './shared/form-components/countries-select/countries-select.component'
+import { CountriesSelectComponent } from './shared/form-components/countries-select/countries-select.component';
 import { SharedModule } from '@shared/shared.module';
 
 @NgModule({

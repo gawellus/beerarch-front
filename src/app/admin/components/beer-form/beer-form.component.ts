@@ -1,25 +1,25 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BeerService } from '@shared/services/beer.service';
 import * as _moment from 'moment';
 import { take } from 'rxjs/operators';
-
+import { ThemePalette } from '@angular/material/core';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { autocompleteValueValidator } from '../../shared/custom-validators/autocomplete-value.validator';
 
 const moment = _moment;
 
 const MY_FORMATS = {
   parse: {
-    dateInput: 'LL',
+    dateInput: 'l, LTS',
   },
   display: {
     dateInput: 'YYYY-MM-DD',
-    monthYearLabel: 'YYYY',
+    monthYearLabel: 'MMM YYYY',
     dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'YYYY',
+    monthYearA11yLabel: 'MMMM YYYY',
   },
 };
 
@@ -28,18 +28,12 @@ const MY_FORMATS = {
   templateUrl: './beer-form.component.html',
   styleUrls: ['./beer-form.component.css'],
   providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
   ],
 })
 export class BeerFormComponent implements OnInit {
-  @ViewChild('nameRef') nameRef: ElementRef;
-  focusName(): void {    
-    this.nameRef.nativeElement.scrollIntoView();
-  }
 
-  form: FormGroup;
-  photoLink: string;
-  beerId;
+  public color: ThemePalette = 'primary';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,6 +42,19 @@ export class BeerFormComponent implements OnInit {
     private router: Router,
     private datePipe: DatePipe
   ) { }
+
+  get name() {
+    return this.form.get('name');
+  }
+  @ViewChild('nameRef') nameRef: ElementRef;
+  @ViewChild('picker') picker: any;
+
+  form: FormGroup;
+  photoLink: string;
+  beerId;
+  focusName(): void {
+    this.nameRef.nativeElement.scrollIntoView();
+  }
 
 
   ngOnInit() {
@@ -84,11 +91,7 @@ export class BeerFormComponent implements OnInit {
         });
         this.photoLink = res.photo;
       });
-    }    
-  }
-
-  get name() {
-    return this.form.get('name');
+    }
   }
 
   onSubmit() {
@@ -97,10 +100,10 @@ export class BeerFormComponent implements OnInit {
     if (this.form.valid) {
       if (this.beerId) {
         this.beerService.updateBeer(this.toFormData(this.form.value), this.beerId).subscribe(resp => {
-          if(resp.status == 200) {
+          if (resp.status === 200) {
             this.router.navigate(['/admin/beers']);
           }
-       })
+       });
       } else {
         this.beerService.saveBeer(this.toFormData(this.form.value)).subscribe(resp => {
           if (resp.status === 201) {
@@ -110,7 +113,7 @@ export class BeerFormComponent implements OnInit {
             this.form.get('name').setErrors({ exist: true });
             this.focusName();
           }
-       })
+       });
       }
     }
   }
@@ -129,8 +132,14 @@ export class BeerFormComponent implements OnInit {
     formData.delete('breweries');
     formData.delete('photo');
 
-    const consumptionDate = this.form.get('consumed_on').value;
-    formData.set('consumed_on', this.datePipe.transform(consumptionDate, 'yyyy-MM-dd'));
+    const consumptionDate = moment(this.form.get('consumed_on').value);    
+
+    if (!this.beerId) {
+      let now: Date = new Date();
+      consumptionDate.set({hour:now.getHours(),minute:now.getMinutes(),second:0});
+    }    
+
+    formData.set('consumed_on', this.datePipe.transform(consumptionDate, 'yyyy-MM-dd HH:mm:ss'));
 
     const photoFile = this.form.get('photo').value;
     if (photoFile && (typeof photoFile.name === 'string')) {

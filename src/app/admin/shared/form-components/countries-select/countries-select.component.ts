@@ -19,15 +19,15 @@ export class CountriesSelectComponent implements OnInit {
 
   constructor(private countryService: CountryService) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.importedData = this.countryService.getList();
-    this.filteredCountries = this.country.controls['countries'].valueChanges
+    this.filteredCountries = this.country.controls.countries.valueChanges
       .pipe(
         startWith(''),
         debounceTime(400),
         distinctUntilChanged(),
         switchMap(val => {
-          return this.filter(val.name || val)
+          return this.filter(val.name || val);
         })
       );
   }
@@ -36,9 +36,9 @@ export class CountriesSelectComponent implements OnInit {
     return this.importedData
       .pipe(
         map(response => response.filter(option => {
-          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0
+          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0;
         }))
-      )
+      );
   }
 
   displayCountryName(country: Country): string {
@@ -46,8 +46,8 @@ export class CountriesSelectComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.country.controls['countries'].hasError('required') ? 'Wybierz kraj z listy' :
-      this.country.controls['countries'].hasError('incorrect') ? 'Nazwa niepoprawna' :
+    return this.country.controls.countries.hasError('required') ? 'Wybierz kraj z listy' :
+      this.country.controls.countries.hasError('incorrect') ? 'Nazwa niepoprawna' :
         '';
   }
 

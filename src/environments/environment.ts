@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://beer.arch/api'
+  apiUrl: 'http://beer.arch/api',
+  imagesUrl: 'http://beer.arch/uploads/images/',
+  appName: 'Beerarch.pl'
 };
 
 /*

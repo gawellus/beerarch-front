@@ -6,6 +6,7 @@ table {
 .mat-form-field {
     font-size: 14px;
     width: 100%;
+    padding-left: 24px;
 }
 
 .mat-column-action {

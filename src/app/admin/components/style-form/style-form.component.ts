@@ -49,7 +49,7 @@ export class StyleFormComponent implements OnInit {
           if (resp.status === 200) {
             this.router.navigate(['/admin/styles']);
           }
-        })
+        });
       } else {
         this.styleService.saveStyle(this.toFormData(this.form.value)).subscribe(resp => {
           if (resp.status === 201) {

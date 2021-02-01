@@ -9,8 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class StyleService {
 
-  PHP_API_SERVER = "beer.arch/api";
-
   constructor(private httpClient: HttpClient) { }
 
   getStyles(): Observable<Style[]> {
@@ -22,10 +20,10 @@ export class StyleService {
   }
 
   getStyleDetails(id: number): Observable<Style> {
-    return this.httpClient.get<Style>(`${environment.apiUrl}/styles/`+id);
+    return this.httpClient.get<Style>(`${environment.apiUrl}/styles/` + id);
   }
 
   updateStyle(data, id: number) {
-    return this.httpClient.post(`${environment.apiUrl}/styles/`+id, data, {observe: 'response'});
+    return this.httpClient.post(`${environment.apiUrl}/styles/` + id, data, {observe: 'response'});
   }
 }

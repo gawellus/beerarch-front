@@ -15,8 +15,8 @@ import { CountryService } from '@shared/services/country.service';
 })
 export class AdminCountriesComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'action']; 
-  dataSource: MatTableDataSource<Country>; 
+  displayedColumns: string[] = ['name', 'action'];
+  dataSource: MatTableDataSource<Country>;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -36,12 +36,12 @@ export class AdminCountriesComponent implements OnInit {
   }
 
   deleteItem(id) {
-    if(!confirm('Sure?')) return;
+    if (!confirm('Sure?')) { return; }
     this.countryService.deleteCountry(id).subscribe(
-      resp => {           
-        if(resp.status == 200) {
-          this.getCountries();          
+      resp => {
+        if (resp.status === 200) {
+          this.getCountries();
         }
-     })
+     });
   }
 }

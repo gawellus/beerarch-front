@@ -11,7 +11,8 @@ body {
 }
 
 .container {
-    width: 1200px;
+    max-width: 1200px;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -50,4 +51,27 @@ mat-form-field {
 
 .action-column {
     width: 10%;
+}
+
+
+/* Create two equal columns that floats next to each other */
+
+.flex-col {
+    float: left;
+    width: 50%;
+}
+
+
+/* Clear floats after the columns */
+
+.flex-container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 470px) {
+    .flex-col {
+        width: 100%;
+    }
 }

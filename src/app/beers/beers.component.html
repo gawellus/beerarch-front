@@ -1,97 +1,99 @@
 <section class="last-drinked">
-    <div *ngIf="latestBeer" class="grid-container">
-        <div class="col-1 beer-pic">
-            <img *ngIf="latestBeer.photo" mat-card-image [src]="photoUrl">
+    <mat-card>
+        <div *ngIf="latestBeer" class="flex-container">
+            <div class="col-1 beer-pic flex-col">
+                <img *ngIf="latestBeer.photo" mat-card-image [src]="photoUrl">
+            </div>
+            <div class="col-2 flex-col">
+                <div class="main-title">
+                    <div>
+                        <h3>{{ latestBeer.name }}</h3>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Ocena</h3>
+                    </div>
+                    <div class="description rating">
+                        <p style="font-weight: bold; color:{{latestBeer.rating | rankcolor}};font-size: 1.5em;">{{latestBeer.rating | number : '1.1-1' }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Data konsumpcji</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{latestBeer.consumed_on | date:"yyyy-MM-dd"}}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Styl</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.style.name }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Browar</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.brewery.name }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Kraj</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.brewery.country.name }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Alc</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.alc | number : '1.1-1' }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Ekst</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.ekst | number : '1.1-1' }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>IBU</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.ibu }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Szczegóły</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.description }}</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="title">
+                        <h3>Uwagi</h3>
+                    </div>
+                    <div class="description">
+                        <p>{{ latestBeer.notes }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-2">
-            <div class="main-title">
-                <div>
-                    <h3>{{ latestBeer.name }}</h3>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Ocena</h3>
-                </div>
-                <div class="description rating">
-                    <p style="font-weight: bold; color:{{latestBeer.rating | rankcolor}};font-size: 1.5em;">{{latestBeer.rating | number : '1.1-1' }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Data konsumpcji</h3>
-                </div>
-                <div class="description">
-                    <p>{{latestBeer.consumed_on | date:"yyyy-MM-dd"}}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Styl</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.style.name }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Browar</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.brewery.name }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Kraj</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.brewery.country.name }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Alc</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.alc | number : '1.1-1' }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Ekst</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.ekst | number : '1.1-1' }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>IBU</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.ibu }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Szczegóły</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.description }}</p>
-                </div>
-            </div>
-            <div class="section">
-                <div class="title">
-                    <h3>Uwagi</h3>
-                </div>
-                <div class="description">
-                    <p>{{ latestBeer.notes }}</p>
-                </div>
-            </div>
+        <div>
+            <a mat-stroked-button routerLink="/">Wstecz</a>
         </div>
-    </div>
-    <div>
-        <a mat-stroked-button routerLink="/">Wstecz</a>
-    </div>
+    </mat-card>
 </section>

@@ -15,13 +15,14 @@ import { BackButtonDirective } from './back-button.directive';
 import { TopListComponent } from './components/top-list/top-list.component';
 import { RankColorPipe } from './rank-color.pipe';
 import { PopularListComponent } from './components/popular-list/popular-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([]),
     MaterialModule,
-    // RankColorPipe
+    ReactiveFormsModule
   ],
   declarations: [
     HeaderComponent,

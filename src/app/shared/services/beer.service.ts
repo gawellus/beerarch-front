@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Beer } from '@shared/models/beer';
+import { Brewery } from '@shared/models/brewery';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -31,4 +32,9 @@ export class BeerService {
   getLatestBeer(): Observable<Beer> {
     return this.httpClient.get<Beer>(`${environment.apiUrl}/beers/latest`);
   }
+
+  searchABeer(param?): Observable<Beer[]> {
+    return this.httpClient.get<Beer[]>(`${environment.apiUrl}/beers/search`, {params: param});
+  }
+
 }

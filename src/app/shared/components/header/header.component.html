@@ -21,6 +21,18 @@
                         <a mat-button (click)="logout()">Logout</a>
                     </ng-container>
                 </div>
+                <div class="search-bar">
+                    <form class="search-form" [formGroup]="form" (keyup.enter)="onSubmit()">
+                        <mat-form-field>
+                            <mat-icon matPrefix>search</mat-icon>
+                            <input formControlName="search" matInput>
+                            <button class="search-clear" mat-button matSuffix mat-icon-button aria-label="Clear">
+                                <mat-icon>close</mat-icon>
+                              </button>
+                        </mat-form-field>
+                    </form>
+
+                </div>
             </mat-toolbar-row>
         </mat-toolbar>
     </div>

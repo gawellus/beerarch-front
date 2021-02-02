@@ -16,13 +16,15 @@ import { MaterialModule } from './material.module';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 import { DatePipe } from '@angular/common';
 import { AuthGuard } from 'src/app/shared/helpers/auth.guard';
+import { SearchComponent } from './shared/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     BeersComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent
   ],
   imports: [
     AdminModule,
@@ -38,7 +40,8 @@ import { AuthGuard } from 'src/app/shared/helpers/auth.guard';
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'beers/:id', component: BeersComponent, canActivate: [AuthGuard] }
+      { path: 'beers/:id', component: BeersComponent, canActivate: [AuthGuard] },
+      { path: 'search/:word', component: SearchComponent }
     ]),
   ],
   providers: [

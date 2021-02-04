@@ -16,27 +16,33 @@ import { TopListComponent } from './components/top-list/top-list.component';
 import { RankColorPipe } from './rank-color.pipe';
 import { PopularListComponent } from './components/popular-list/popular-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { SidenavListComponent } from './components/sidenav-list/sidenav-list.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([]),
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule,
   ],
   declarations: [
     HeaderComponent,
     BackButtonDirective,
     TopListComponent,
     RankColorPipe,
-    PopularListComponent
+    PopularListComponent,
+    SidenavListComponent
   ],
   exports: [
     HeaderComponent,
     BackButtonDirective,
     TopListComponent,
     RankColorPipe,
-    PopularListComponent
+    PopularListComponent,
+    FlexLayoutModule,
+    SidenavListComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

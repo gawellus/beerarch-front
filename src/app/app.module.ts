@@ -17,6 +17,7 @@ import { MomentDateModule } from '@angular/material-moment-adapter';
 import { DatePipe } from '@angular/common';
 import { AuthGuard } from 'src/app/shared/helpers/auth.guard';
 import { SearchComponent } from './shared/search/search.component';
+import { LayoutComponent } from 'src/app/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SearchComponent } from './shared/search/search.component';
     DashboardComponent,
     BeersComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    LayoutComponent
   ],
   imports: [
     AdminModule,
@@ -36,7 +38,7 @@ import { SearchComponent } from './shared/search/search.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     MaterialModule,
-    MomentDateModule,
+    MomentDateModule,    
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'login', component: LoginComponent },

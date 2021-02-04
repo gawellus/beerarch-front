@@ -1,39 +1,40 @@
-<div class="header-container">
-    <div class="container">
-        <mat-toolbar>
-            <mat-toolbar-row>
-                <a mat-button routerLink='/'>
-                    <h1>Beerarch.pl</h1>
-                </a>
-                <span class="menu-spacer"></span>
-                <div>
-                    <ng-template #anonymousUser>
-                        <a mat-menu-item routerLink="/login">Login</a>
-                    </ng-template>
-                    <ng-container *ngIf="currentUser; else anonymousUser">
-                        <button mat-button [matMenuTriggerFor]="aboveMenu">Admin</button>
-                        <mat-menu #aboveMenu="matMenu" yPosition="above">
-                            <a mat-menu-item routerLink='admin/beers'>Beers</a>
-                            <a mat-menu-item routerLink='admin/breweries'>Breweries</a>
-                            <a mat-menu-item routerLink='admin/countries'>Countries</a>
-                            <a mat-menu-item routerLink='admin/styles'>Styles</a>
-                        </mat-menu>
-                        <a mat-button (click)="logout()">Logout</a>
-                    </ng-container>
-                </div>
-                <div class="search-bar">
-                    <form class="search-form" [formGroup]="form" (keyup.enter)="onSubmit()">
-                        <mat-form-field>
-                            <mat-icon matPrefix>search</mat-icon>
-                            <input formControlName="search" matInput>
-                            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearVal()">
-                                <mat-icon>close</mat-icon>
-                            </button>
-                        </mat-form-field>
-                    </form>
-
-                </div>
-            </mat-toolbar-row>
-        </mat-toolbar>
+<mat-toolbar>
+    <!-- <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div> -->
+    <div>
+        <a routerLink="/">
+            <h1>Beerarch.pl</h1>
+        </a>
     </div>
-</div>
+    <div fxFlex fxLayout fxLayoutAlign="end center">
+        <div class="submenu" fxHide.xs>
+            <ng-template #anonymousUser>
+                <a mat-menu-item routerLink="/login">Login</a>
+            </ng-template>
+            <ng-container *ngIf="currentUser; else anonymousUser">
+                <button mat-button [matMenuTriggerFor]="aboveMenu">Admin</button>
+                <mat-menu #aboveMenu="matMenu" yPosition="above">
+                    <a mat-menu-item routerLink='admin/beers'>Beers</a>
+                    <a mat-menu-item routerLink='admin/breweries'>Breweries</a>
+                    <a mat-menu-item routerLink='admin/countries'>Countries</a>
+                    <a mat-menu-item routerLink='admin/styles'>Styles</a>
+                </mat-menu>
+                <a mat-button (click)="logout()">Logout</a>
+            </ng-container>
+        </div>
+        <div class="search-bar">
+            <form class="search-form" [formGroup]="form" (keyup.enter)="onSubmit()">
+                <mat-form-field>
+                    <mat-icon matPrefix>search</mat-icon>
+                    <input formControlName="search" matInput>
+                    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clearVal()">
+                    <mat-icon>close</mat-icon>
+                </button>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+</mat-toolbar>

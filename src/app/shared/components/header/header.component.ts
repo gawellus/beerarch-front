@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  @Output() public sidenavToggle = new EventEmitter();
 
   currentUser: User;
   form: FormGroup;
@@ -49,4 +51,8 @@ export class HeaderComponent implements OnInit {
   clearVal() {
     this.form.reset();
   }
+
+  // public onToggleSidenav = () => { 
+  //   this.sidenavToggle.emit();
+  // }  
 }

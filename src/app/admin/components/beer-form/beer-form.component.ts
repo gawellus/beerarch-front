@@ -35,6 +35,8 @@ export class BeerFormComponent implements OnInit {
 
   public color: ThemePalette = 'primary';
 
+  public isDisabled = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private beerService: BeerService,
@@ -98,18 +100,22 @@ export class BeerFormComponent implements OnInit {
     // na autoselectach pole może zwracać stringa, jeśli wartość została wpisana z łapy
     // można dodać walidator na obiekt
     if (this.form.valid) {
+      this.isDisabled = true;
       if (this.beerId) {
         this.beerService.updateBeer(this.toFormData(this.form.value), this.beerId).subscribe(resp => {
           if (resp.status === 200) {
+            this.isDisabled = false;
             this.router.navigate(['/admin/beers']);
           }
        });
       } else {
         this.beerService.saveBeer(this.toFormData(this.form.value)).subscribe(resp => {
           if (resp.status === 201) {
+            this.isDisabled = false;
             this.router.navigate(['/admin/beers']);
           }
           if (resp.status === 200) {
+            this.isDisabled = false;
             this.form.get('name').setErrors({ exist: true });
             this.focusName();
           }

@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Beer } from '@shared/models/beer';
 import { BeerService } from '@shared/services/beer.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-admin-beers',
@@ -12,8 +13,9 @@ import { BeerService } from '@shared/services/beer.service';
 })
 export class AdminBeersComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'alc', 'rating', 'brewery', 'style', 'country', 'consumed_on', 'action'];
+  displayedColumns: string[] = ['photo', 'name', 'alc', 'rating', 'brewery', 'style', 'country', 'consumed_on', 'action'];
   dataSource: MatTableDataSource<Beer>;
+  public photoUrl = environment.imagesUrl;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -32,5 +34,4 @@ export class AdminBeersComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
 }

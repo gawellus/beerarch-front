@@ -12,3 +12,11 @@ table {
 .mat-column-action {
     text-align: right;
 }
+
+.preview {
+    display: inline-block;
+}
+
+.mat-column-photo {
+    max-width: 0.5em;
+}

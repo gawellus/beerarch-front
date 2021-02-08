@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
+
     let searchString = this.form.value.search;    
     this.redirectTo('/search', searchString);
   }

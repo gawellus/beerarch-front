@@ -23,14 +23,9 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchString = this.route.snapshot.paramMap.get('word');
 
-
     this.beerService.searchABeer({ search: this.searchString }).subscribe(beers => {
       this.dataSource = new MatTableDataSource(beers);
       this.isLoading = false;
     });  
-
   }
-
-
-
 }

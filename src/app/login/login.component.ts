@@ -21,7 +21,11 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) { 
+    if (this.authService.userValue) { 
+      this.router.navigate(['/']);
+    }
+  }
 
   login() {
     return true;

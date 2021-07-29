@@ -1,4 +1,8 @@
 <div class="mat-elevation-z8 table-container">
+    <mat-form-field class="filter-field">
+        <mat-label>Filtr</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Nazwa" #input>
+    </mat-form-field>
     <table mat-table matSort [dataSource]="dataSource">
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa </th>

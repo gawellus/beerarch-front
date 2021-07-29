@@ -36,7 +36,7 @@ export class BreweriesSelectComponent implements OnInit {
     return this.importedData
       .pipe(
         map(response => response.filter(option => {
-          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0;
+          return option.name.toLowerCase().includes(val.toLowerCase());
         }))
       );
   }

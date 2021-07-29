@@ -35,8 +35,8 @@ export class StylesSelectComponent implements OnInit {
   filter(val: string): Observable<Style[]> {
     return this.importedData
       .pipe(
-        map(response => response.filter(option => {
-          return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0;
+        map(response => response.filter(option => {          
+          return option.name.toLowerCase().includes(val.toLowerCase());
         }))
       );
   }

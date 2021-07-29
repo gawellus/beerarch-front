@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
       private authService: AuthService,
       private formBuilder: FormBuilder
   ) {
-      this.authService.currentUser.subscribe(x => this.currentUser = x); 
+      this.authService.user.subscribe(x => this.currentUser = x); 
   }
 
   redirectTo(uri, param){
